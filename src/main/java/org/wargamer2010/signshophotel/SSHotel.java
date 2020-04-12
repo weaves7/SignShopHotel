@@ -21,6 +21,7 @@ import org.wargamer2010.signshophotel.commands.HelpHandler;
 import org.wargamer2010.signshophotel.commands.ReloadHandler;
 import org.wargamer2010.signshophotel.listeners.ExpiredRentListener;
 import org.wargamer2010.signshophotel.listeners.SignShopListener;
+import org.wargamer2010.signshophotel.operations.HotelSign;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,13 +58,14 @@ public class SSHotel extends JavaPlugin {
         pm.registerEvents(new SignShopListener(), this);
         pm.registerEvents(new ExpiredRentListener(), this);
         createDir();
-
         String filename = "config.yml";
         FileConfiguration ymlThing = configUtil.loadYMLFromPluginFolder(this, filename);
         if(ymlThing != null) {
             configUtil.loadYMLFromJar(this, SSHotel.class, ymlThing, filename);
             getSettings(ymlThing);
-            SignShopConfig.setupOperations(configUtil.fetchStringStringHashMap("signs", ymlThing));
+
+            SignShopConfig.registerExternalOperation(new HotelSign());
+            SignShopConfig.setupOperations(configUtil.fetchStringStringHashMap("signs", ymlThing),"org.wargamer2010.signshophotel.operations");
             SignShopConfig.registerErrorMessages(configUtil.fetchStringStringHashMap("errors", ymlThing));
             for(Map.Entry<String, HashMap<String, String>> entry : configUtil.fetchHasmapInHashmap("messages", ymlThing).entrySet()) {
                 SignShopConfig.registerMessages(entry.getKey(), entry.getValue());

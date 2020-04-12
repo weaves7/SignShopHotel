@@ -1,4 +1,4 @@
-package org.wargamer2010.signshop.operations;
+package org.wargamer2010.signshophotel.operations;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -6,6 +6,8 @@ import org.wargamer2010.signshop.Seller;
 import org.wargamer2010.signshop.SignShop;
 import org.wargamer2010.signshop.configuration.SignShopConfig;
 import org.wargamer2010.signshop.configuration.Storage;
+import org.wargamer2010.signshop.operations.SignShopArguments;
+import org.wargamer2010.signshop.operations.SignShopOperation;
 import org.wargamer2010.signshop.player.SignShopPlayer;
 import org.wargamer2010.signshop.util.economyUtil;
 import org.wargamer2010.signshophotel.RoomRegistration;
